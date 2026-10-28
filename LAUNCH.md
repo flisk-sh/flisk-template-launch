@@ -63,3 +63,15 @@ Take them from a real run, never a mockup.
 - Answer every comment within the hour.
 - Share it where you already talk to people: your newsletter, your own social accounts. Say what it does and link
   it; do not ask for votes.
+
+## 7. Directories to submit to
+
+Submit in the weeks around launch. Each listing is a backlink and a steady trickle of early users.
+
+- [ ] [Product Hunt](https://www.producthunt.com/): schedule the launch for 00:01 Pacific and have the maker comment
+  ready, saying why you built it.
+- [ ] [Hacker News (Show HN)](https://news.ycombinator.com/showhn.html): post as "Show HN: …" with a plain
+  description and a link people can try without signing up. Stay in the thread to answer questions.
+- [ ] [BetaList](https://betalist.com/): good for pre-launch and early-stage products collecting their first users.
+- [ ] [Indie Hackers](https://www.indiehackers.com/): add the product and share a build or launch story in the
+  community.

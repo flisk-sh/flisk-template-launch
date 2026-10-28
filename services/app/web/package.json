@@ -12,7 +12,7 @@
     "lint:fix": "biome check . --write",
     "icons": "bun scripts/icons.ts",
     "rename": "bun scripts/rename.ts",
-    "video": "bun scripts/video.ts"
+    "video": "cd ../../.. && bun video/shots.ts && bun video/render.ts"
   },
   "dependencies": {
     "hono": "^4.0.0"
