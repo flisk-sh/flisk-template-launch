@@ -1,6 +1,6 @@
 // The pages, rendered on the server with no JavaScript (the Content-Security-Policy allows none): home, a result,
 // about with the FAQ, and not found. Each one passes its own PageMeta to head(), which writes every SEO tag.
-import { type Result, summarize } from "./contrast";
+import { check, LEVELS, type Result, summarize } from "./contrast";
 import { esc, faqJsonLd, head, type PageMeta } from "./seo";
 import { SITE } from "./site";
 
@@ -31,10 +31,6 @@ button{font:inherit;font-weight:650;padding:12px 22px;border:0;border-radius:10p
 .chip{display:inline-flex;gap:6px;align-items:center;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--card);font-family:var(--mono)}.chip:hover{border-color:var(--accent)}
 .stage .chip{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
 .sw{width:14px;height:14px;border-radius:50%;border:1px solid rgba(127,127,127,.4);display:inline-block;vertical-align:-2px}
-.demo{margin:52px auto 0;max-width:760px;border:1px solid rgba(255,255,255,.12);border-bottom:0;border-radius:16px 16px 0 0;overflow:hidden;background:#11131a;box-shadow:0 -10px 90px -20px rgba(124,92,255,.55)}
-.demo .chrome{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08)}.demo .chrome i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.16)}
-.demo video,.demo img{display:block;width:100%;height:auto}.demo .still{display:none}
-@media (prefers-reduced-motion:reduce){.demo video{display:none}.demo .still{display:block}}
 .ratio{font-size:clamp(64px,15vw,120px);line-height:1;margin:0 auto 14px}
 .sample{border-radius:16px;padding:32px 28px;border:1px solid var(--line);margin:40px 0 20px;box-shadow:0 20px 50px -30px rgba(20,20,40,.5)}.sample p{margin:0}.sample .big{font-size:26px;font-weight:750;margin-bottom:6px}
 ul.levels{list-style:none;padding:0;margin:16px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
@@ -46,8 +42,23 @@ dt{font-weight:700;margin-top:20px;font-size:17px}dd{margin:6px 0 0;color:var(--
 .prose{padding:56px 0 0}.prose h1{text-align:left;margin:0 0 14px}.prose .lede{margin:0 0 28px}
 footer{margin-top:96px;border-top:1px solid var(--line);padding:26px 0 44px;color:var(--muted);font-size:14px}
 .hero{padding:48px 0 0}
-@media (min-width:980px){.hero:not(.short){padding:56px 0 64px}.hero:not(.short) .wrap{max-width:1080px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:56px;align-items:center;text-align:left}.hero:not(.short) .wrap>*{grid-column:1}.hero:not(.short) h1{margin:0 0 16px;font-size:clamp(40px,4.4vw,56px)}.hero:not(.short) .lede{margin:0 0 26px;font-size:18px}.hero:not(.short) form{justify-self:start}.hero:not(.short) .chips{justify-content:flex-start}.hero:not(.short) .demo{grid-column:2;grid-row:1/span 4;margin:0;border-radius:16px;border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px -30px rgba(124,92,255,.6)}}
+@media (min-width:980px){.hero:not(.short){padding:56px 0 64px}.hero:not(.short) .wrap{max-width:1080px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:56px;align-items:center;text-align:left}.hero:not(.short) .wrap>*{grid-column:1}.hero:not(.short) h1{margin:0 0 16px;font-size:clamp(40px,4.4vw,56px)}.hero:not(.short) .lede{margin:0 0 26px;font-size:18px}.hero:not(.short) form{justify-self:start}.hero:not(.short) .chips{justify-content:flex-start}}
 @media (max-width:560px){form{padding:12px;justify-content:flex-start}button{width:100%}}
+.reassure{margin:12px 0 0;font-size:13px;color:var(--muted)}.reassure b{color:var(--pass)}
+.preview{--fg:#141413;--muted:#5d5a53;--line:#e6e3da;--sunk:#f3f1ec;--pass:#18794e;--fail:#c22a1f;margin:44px auto 0;max-width:520px;text-align:left;background:#fff;color:var(--fg);border-radius:18px;padding:18px;box-shadow:0 40px 100px -30px rgba(91,124,255,.65),0 0 0 1px rgba(255,255,255,.08)}
+.preview .top{display:flex;align-items:center;gap:10px;font:600 12.5px var(--mono);color:var(--muted);margin-bottom:12px}.preview .top em{margin-left:auto;white-space:nowrap;font:600 11px ui-sans-serif,system-ui,sans-serif;font-style:normal;text-transform:uppercase;letter-spacing:.08em;background:var(--sunk);border-radius:6px;padding:3px 8px}
+.preview .swatch{border-radius:12px;padding:18px;border:1px solid var(--line);display:flex;align-items:end;justify-content:space-between;gap:12px}.preview .swatch b{font-size:46px;line-height:1;letter-spacing:-.04em}.preview .swatch span{font-size:14px;max-width:18ch;text-align:right}
+.preview ul{list-style:none;margin:10px 0 0;padding:0}.preview li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:14px}.preview li:last-child{border-bottom:0}
+.preview .fixit{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--pass) 9%,#fff);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:56px 0 0;border-top:1px solid var(--line);text-align:left}
+.stats div{padding:24px 20px 28px 0}.stats div+div{padding-left:20px;border-left:1px solid var(--line)}
+.stats b{display:block;font-size:clamp(30px,4vw,48px);line-height:1;font-weight:800;letter-spacing:-.04em}.stats span{display:block;margin-top:8px;color:var(--muted);font-size:14px;line-height:1.4;max-width:22ch}
+.kick{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin:72px 0 10px}.kick+h2{margin-top:0}
+.film{margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#07080c}.film .chrome{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid #1d2029}.film .chrome i{width:11px;height:11px;border-radius:50%;background:#2a2d38}
+.film video,.film img{display:block;width:100%;height:auto}.film .still{display:none}
+@media (prefers-reduced-motion:reduce){.film video{display:none}.film .still{display:block}}
+@media (max-width:640px){.stats{grid-template-columns:1fr 1fr}.stats div{padding:18px 12px 20px 0}.stats div+div{padding-left:12px}.stats div:nth-child(3){padding-left:0;border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (min-width:980px){.hero:not(.short) .preview{grid-column:2;grid-row:1/span 5;margin:0;justify-self:end;width:100%}.hero:not(.short) .stats{grid-column:1/-1}.hero:not(.short){padding-bottom:0}}
 `;
 
 function layout(base: string, meta: PageMeta, body: string): string {
@@ -72,6 +83,23 @@ const chips = (root: string) =>
 		)
 		.join("")}</p>`;
 
+/** The numbers under the hero, each true of every pair. */
+const STATS: [string, string][] = [
+	[`${LEVELS.length}`, "WCAG 2.2 checks for every pair"],
+	["1", "address per pair, to share or link"],
+	["SVG", "badge and a JSON API for each pair"],
+	["0", "scripts, cookies or stored colors"],
+];
+
+/** The hero's sample result, worked out by the checker itself. */
+function preview(base: string): string {
+	const r = check("999999", "ffffff") as Result;
+	return `<figure class="preview" aria-label="A sample result"><div class="top">${esc(new URL(base).host)}/999999/ffffff<em>Sample result</em></div>
+<div class="swatch" style="color:#${r.fg};background:#${r.bg}"><b>${r.ratio.toFixed(2)}:1</b><span>Gray text on white, as many sites set it</span></div>
+<ul>${r.levels.map((l) => `<li><span>${esc(l.label)}</span><span class="${l.pass ? "pass" : "fail"}">${l.pass ? "Pass" : "Fail"}</span></li>`).join("")}</ul>
+${r.suggestion ? `<p class="fixit"><span class="sw" style="background:#${r.suggestion}"></span> #${r.suggestion} is the nearest gray that passes AA body text.</p>` : ""}</figure>`;
+}
+
 export function homePage(base: string): string {
 	const root = new URL(`${base}/`).pathname.replace(/\/$/, "");
 	return layout(
@@ -85,9 +113,13 @@ export function homePage(base: string): string {
 <p class="lede">${esc(SITE.description)}</p>
 ${form(root)}
 ${chips(root)}
-<figure class="demo"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div><img class="still" src="${root}/demo.jpg" width="960" height="540" alt=""><video src="${root}/demo.mp4" poster="${root}/demo.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-describedby="demo-text"></video>
-<figcaption id="demo-text" class="sr">A 22-second film: 999999/ffffff is typed after the address, the result page shows a 2.84:1 ratio and a text sample, every WCAG level is marked fail, and a click on the nearest passing color, #767676.</figcaption></figure></div></section>
-<div class="wrap"><h2>Or type it</h2>
+<p class="reassure"><b>●</b> Free · No signup · No cookies</p>
+${preview(base)}
+<div class="stats">${STATS.map(([n, t]) => `<div><b>${n}</b><span>${t}</span></div>`).join("")}</div></div></section>
+<div class="wrap"><p class="kick">See it run</p><h2>From two colors to a fix in 22 seconds.</h2>
+<figure class="film"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div><img class="still" src="${root}/demo.jpg" width="960" height="540" alt=""><video src="${root}/demo.mp4" poster="${root}/demo.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-describedby="demo-text"></video>
+<figcaption id="demo-text" class="sr">A 22-second film: 999999/ffffff is typed after the address, the result page shows a 2.84:1 ratio and a text sample, every WCAG level is marked fail, and a click on the nearest passing color, #767676.</figcaption></figure>
+<h2>Or type it</h2>
 <pre>${esc(base)}/1d1c1a/fbfaf7</pre></div>`,
 	);
 }

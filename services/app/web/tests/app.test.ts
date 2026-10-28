@@ -19,6 +19,13 @@ describe("pages", () => {
 		expect(csp).not.toContain("script-src");
 	});
 
+	it("shows a sample result on the home page, worked out by the checker", async () => {
+		const html = await (await app.request("/")).text();
+		expect(html).toContain("tool.test/999999/ffffff");
+		expect(html).toContain("<b>2.84:1</b>");
+		expect(html).toContain("#767676 is the nearest gray");
+	});
+
 	it("sends the form, with the # a color input adds, to the result address", async () => {
 		const res = await app.request("/check?fg=%231D1C1A&bg=%23fbfaf7");
 		expect(res.status).toBe(303);
