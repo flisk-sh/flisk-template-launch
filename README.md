@@ -29,7 +29,7 @@ same way.
 | Tests that fail when a page loses its title, canonical, card or JSON-LD, or an icon goes missing | `tests/seo.test.ts` |
 | CI: typecheck, lint, tests, and the production image started and asked for its SEO files | `.github/workflows/ci.yml` |
 | Free hosting: one Render web service | `render.yaml`, `Dockerfile`, [DEPLOY.md](DEPLOY.md) |
-| A 13-second how-it-works clip: autoplaying on the home page (MP4 with byte ranges, a still for reduced motion) and a GIF for the README | `scripts/video.ts` → `bun run video` |
+| A how-it-works film in the look of the Flisk promos, made from screenshots of your running site: autoplaying on the home page (MP4 with byte ranges, a still for reduced motion) and a GIF for the README | `video/film.json` → `bun video/shots.ts && bun video/render.ts` |
 | Product Hunt kit: ICE scoring, taglines, gallery, first comment, checklist | [LAUNCH.md](LAUNCH.md) |
 
 ## Make it yours
@@ -49,8 +49,9 @@ bun run rename --name "Acme" --domain acme.example.com --repo you/acme
    `src/app.ts` and the tool in `src/mcp.ts`.
 3. `brand/icon.svg`, `brand/icon-full.svg` (full-bleed, for the maskable and Apple icons) and `brand/og.svg`, then
    `bun run icons`. It embeds them in `src/assets.generated.ts`, because Flisk's image ships `src/` only.
-4. `scripts/video.ts`: redraw the four scenes for your tool, then `bun run video` (needs ffmpeg). It writes the
-   clip into `src/video.generated.ts` and the GIF into `docs/demo.gif`.
+4. `video/film.json`: point "shots" at your pages (and the elements to highlight) and write the scenes, then
+   `bun video/shots.ts && bun video/render.ts` (needs Chrome and ffmpeg). It writes the film into
+   `src/video.generated.ts` and the GIF into `docs/demo.gif`.
 5. `bun test`: the SEO tests tell you what you broke.
 
 If the tool fetches other sites, take the SSRF guard (`src/net.ts`) from

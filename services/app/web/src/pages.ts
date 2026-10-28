@@ -66,7 +66,7 @@ export function homePage(base: string): string {
 ${form(root)}
 ${chips(root)}
 <figure class="demo"><img class="still" src="${root}/demo.jpg" width="960" height="540" alt=""><video src="${root}/demo.mp4" poster="${root}/demo.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-describedby="demo-text"></video>
-<figcaption id="demo-text" class="sr">A 13-second clip: two colors are typed after the address, the contrast ratio appears with a text sample, each WCAG level is marked pass or fail, and the same check is shown as an API call, a badge and an MCP server.</figcaption></figure>
+<figcaption id="demo-text" class="sr">A 22-second film: 999999/ffffff is typed after the address, the result page shows a 2.84:1 ratio and a text sample, every WCAG level is marked fail, and a click on the nearest passing color, #767676.</figcaption></figure>
 <h2>Or type it</h2>
 <pre>${esc(base)}/1d1c1a/fbfaf7</pre>`,
 	);
