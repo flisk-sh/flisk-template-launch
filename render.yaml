@@ -1,0 +1,18 @@
+# Render Blueprint on the free plan: render.com → New → Blueprint → flisk-sh/flisk-template-launch. No database and
+# no API keys to fill in. See DEPLOY.md.
+services:
+  - type: web
+    name: flisk-template-launch
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: frankfurt
+    autoDeploy: true
+    healthCheckPath: /ready
+    domains:
+      - template.flisk.si
+    envVars:
+      - key: PUBLIC_URL
+        value: https://template.flisk.si/
+      - key: TRUST_PROXY
+        value: last-forwarded
