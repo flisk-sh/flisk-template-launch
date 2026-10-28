@@ -25,6 +25,9 @@ ul.levels{list-style:none;padding:0;margin:16px 0}ul.levels li{display:flex;just
 pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:13px;white-space:pre-wrap;word-break:break-all}
 dt{font-weight:700;margin-top:16px}dd{margin:4px 0 0}
 footer{margin-top:48px;color:var(--muted);font-size:14px}
+.demo{margin:24px 0 0;max-width:560px}.demo video,.demo img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--card)}.demo .still{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){.demo video{display:none}.demo .still{display:block}}
 `;
 
 function layout(base: string, meta: PageMeta, body: string): string {
@@ -62,6 +65,8 @@ export function homePage(base: string): string {
 <p class="lede">${esc(SITE.description)}</p>
 ${form(root)}
 ${chips(root)}
+<figure class="demo"><img class="still" src="${root}/demo.jpg" width="960" height="540" alt=""><video src="${root}/demo.mp4" poster="${root}/demo.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-describedby="demo-text"></video>
+<figcaption id="demo-text" class="sr">A 13-second clip: two colors are typed after the address, the contrast ratio appears with a text sample, each WCAG level is marked pass or fail, and the same check is shown as an API call, a badge and an MCP server.</figcaption></figure>
 <h2>Or type it</h2>
 <pre>${esc(base)}/1d1c1a/fbfaf7</pre>`,
 	);

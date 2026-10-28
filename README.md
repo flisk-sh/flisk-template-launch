@@ -7,6 +7,8 @@ for free on Render.
 The example tool is **Contrast**: put two colors in the address (`/1d1c1a/fbfaf7`) and get the WCAG contrast ratio,
 AA/AAA verdicts and the nearest color that passes. Replace it with your own; everything around it stays.
 
+![How the example tool works: two colors in the address, the contrast ratio, each WCAG level, and the API, badge and MCP server](docs/demo.gif)
+
 [Citable](https://github.com/flisk-sh/citable) and [Helpdock](https://github.com/flisk-sh/helpdock) are built the
 same way.
 
@@ -27,6 +29,7 @@ same way.
 | Tests that fail when a page loses its title, canonical, card or JSON-LD, or an icon goes missing | `tests/seo.test.ts` |
 | CI: typecheck, lint, tests, and the production image started and asked for its SEO files | `.github/workflows/ci.yml` |
 | Free hosting: one Render web service | `render.yaml`, `Dockerfile`, [DEPLOY.md](DEPLOY.md) |
+| A 13-second how-it-works clip: autoplaying on the home page (MP4 with byte ranges, a still for reduced motion) and a GIF for the README | `scripts/video.ts` → `bun run video` |
 | Product Hunt kit: ICE scoring, taglines, gallery, first comment, checklist | [LAUNCH.md](LAUNCH.md) |
 
 ## Make it yours
@@ -46,7 +49,9 @@ bun run rename --name "Acme" --domain acme.example.com --repo you/acme
    `src/app.ts` and the tool in `src/mcp.ts`.
 3. `brand/icon.svg`, `brand/icon-full.svg` (full-bleed, for the maskable and Apple icons) and `brand/og.svg`, then
    `bun run icons`. It embeds them in `src/assets.generated.ts`, because Flisk's image ships `src/` only.
-4. `bun test`: the SEO tests tell you what you broke.
+4. `scripts/video.ts`: redraw the four scenes for your tool, then `bun run video` (needs ffmpeg). It writes the
+   clip into `src/video.generated.ts` and the GIF into `docs/demo.gif`.
+5. `bun test`: the SEO tests tell you what you broke.
 
 If the tool fetches other sites, take the SSRF guard (`src/net.ts`) from
 [Citable](https://github.com/flisk-sh/citable/blob/main/services/app/web/src/net.ts) and use `Slots` and `TtlCache`

@@ -57,6 +57,26 @@ describe("pages", () => {
 	});
 });
 
+describe("how-it-works clip", () => {
+	it("autoplays muted on the home page and answers byte ranges for Safari", async () => {
+		const home = await (await app.request("/")).text();
+		expect(home).toContain('<video src="/demo.mp4"');
+		expect(home).toContain("autoplay muted loop playsinline");
+		const full = await app.request("/demo.mp4");
+		expect(full.headers.get("content-type")).toBe("video/mp4");
+		const size = (await full.arrayBuffer()).byteLength;
+		const part = await app.request("/demo.mp4", {
+			headers: { range: "bytes=0-1" },
+		});
+		expect(part.status).toBe(206);
+		expect(part.headers.get("content-range")).toBe(`bytes 0-1/${size}`);
+		expect(
+			(await app.request("/demo.mp4", { headers: { range: "bytes=9999999-" } }))
+				.status,
+		).toBe(416);
+	});
+});
+
 describe("API, badge and MCP", () => {
 	it("answers JSON and the badge", async () => {
 		const json = (await (
