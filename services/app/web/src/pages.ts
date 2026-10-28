@@ -5,40 +5,58 @@ import { esc, faqJsonLd, head, type PageMeta } from "./seo";
 import { SITE } from "./site";
 
 const STYLE = `
-:root{--bg:${SITE.themeColor.light};--fg:#1d1c1a;--muted:#6b6862;--line:#e6e2da;--card:#fff;--pass:#1f7a4d;--fail:#b3261e;--accent:#2d4cc8}
-@media (prefers-color-scheme:dark){:root{--bg:${SITE.themeColor.dark};--fg:#efede8;--muted:#a19d95;--line:#2c2b28;--card:#1c1b19;--pass:#5fc28e;--fail:#f07a70;--accent:#8ea2ff}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:760px;margin:0 auto;padding:40px 16px 80px}a{color:var(--accent)}
-h1{font-size:clamp(28px,6vw,44px);line-height:1.1;letter-spacing:-.02em;margin:0 0 12px}h2{font-size:20px;margin:36px 0 8px}
-.lede{color:var(--muted);font-size:18px;margin:0 0 28px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px;font-size:14px}.top>a{color:var(--fg);text-decoration:none;font-weight:700;display:flex;gap:8px;align-items:center}
-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}label{display:flex;gap:8px;align-items:center;font-weight:600}
-input[type=color]{width:52px;height:44px;padding:2px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
-button{font:inherit;font-weight:600;padding:11px 18px;border:0;border-radius:10px;background:var(--fg);color:var(--bg);cursor:pointer}
-.chips{margin:16px 0 0;color:var(--muted);font-size:14px;display:flex;gap:10px;flex-wrap:wrap}
-.chip{display:inline-flex;gap:6px;align-items:center;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:var(--card)}
-.sw{width:14px;height:14px;border-radius:50%;border:1px solid var(--line);display:inline-block}
-.sample{border-radius:14px;padding:28px 24px;border:1px solid var(--line);margin:8px 0 20px}.sample p{margin:0}.sample .big{font-size:24px;font-weight:700}
-.ratio{font-size:clamp(40px,10vw,64px);font-weight:800;letter-spacing:-.03em;margin:0}
-ul.levels{list-style:none;padding:0;margin:16px 0}ul.levels li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:10px 2px}
-.pass{color:var(--pass);font-weight:700}.fail{color:var(--fail);font-weight:700}
-pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:13px;white-space:pre-wrap;word-break:break-all}
-dt{font-weight:700;margin-top:16px}dd{margin:4px 0 0}
-footer{margin-top:48px;color:var(--muted);font-size:14px}
-.demo{margin:24px 0 0;max-width:560px}.demo video,.demo img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--card)}.demo .still{display:none}
+:root{--bg:${SITE.themeColor.light};--fg:#141413;--muted:#66635c;--line:#e3e0d7;--card:#fff;--sunk:#efede7;--pass:#18794e;--fail:#c22a1f;--accent:#2d4cc8;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:${SITE.themeColor.dark};--fg:#eceae4;--muted:#a29f97;--line:#272a31;--card:#16181d;--sunk:#1c1f25;--pass:#4fcf8e;--fail:#ff7b72;--accent:#8ea2ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}.wrap{max-width:820px;margin:0 auto;padding:0 20px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.stage{position:relative;overflow:hidden;background:#07080c;color:#f4f3ef;--fg:#f4f3ef;--muted:#b0afba;--line:#262833;--card:#11131a;--sunk:#1b1e28;--accent:#9db0ff;--pass:#4ade80;--fail:#ff7b72}
+.stage::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(60% 65% at 50% 30%,#000 25%,transparent 100%);mask-image:radial-gradient(60% 65% at 50% 30%,#000 25%,transparent 100%);pointer-events:none}
+.stage::after{content:"";position:absolute;inset:-10%;background:radial-gradient(38% 32% at 22% 18%,rgba(91,124,255,.38),transparent 70%),radial-gradient(32% 30% at 82% 30%,rgba(74,222,128,.24),transparent 70%),radial-gradient(40% 36% at 55% 95%,rgba(168,85,247,.3),transparent 70%);pointer-events:none}
+.stage>*{position:relative;z-index:1}
+header.top{background:#07080c;border-bottom:1px solid #1d2029}header.top::before,header.top::after{display:none}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:60px;font-size:15px}
+header.top a{color:var(--muted);text-decoration:none}header.top a:first-child{color:var(--fg);font-weight:750;font-size:17px;display:flex;gap:10px;align-items:center}header.top img{border-radius:6px}
+.hero{padding:72px 0 0;text-align:center}.hero.short{padding-bottom:64px}
+h1{font-size:clamp(34px,6.5vw,60px);line-height:1.04;letter-spacing:-.04em;font-weight:800;margin:0 auto 16px;max-width:16ch}
+.grad{background:linear-gradient(92deg,#9db0ff,#c084fc 48%,#4ade80);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:clamp(22px,3.4vw,30px);letter-spacing:-.025em;margin:56px 0 14px;font-weight:780}
+.lede{color:var(--muted);font-size:clamp(17px,2.3vw,19px);max-width:600px;margin:0 auto 30px}
+form{display:inline-flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 10px 10px 18px}
+.stage form{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+label{display:flex;gap:10px;align-items:center;font-weight:600;color:var(--muted)}
+input[type=color]{width:52px;height:44px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--card);cursor:pointer}
+button{font:inherit;font-weight:650;padding:12px 22px;border:0;border-radius:10px;background:linear-gradient(135deg,#5b7cff,#8b5cf6);color:#fff;cursor:pointer;box-shadow:0 8px 24px -10px rgba(91,124,255,.8)}button:hover{background:linear-gradient(135deg,#6d8bff,#a06bff)}
+.chips{margin:18px 0 0;font-size:13px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chip{display:inline-flex;gap:6px;align-items:center;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--card);font-family:var(--mono)}.chip:hover{border-color:var(--accent)}
+.stage .chip{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+.sw{width:14px;height:14px;border-radius:50%;border:1px solid rgba(127,127,127,.4);display:inline-block;vertical-align:-2px}
+.demo{margin:52px auto 0;max-width:760px;border:1px solid rgba(255,255,255,.12);border-bottom:0;border-radius:16px 16px 0 0;overflow:hidden;background:#11131a;box-shadow:0 -10px 90px -20px rgba(124,92,255,.55)}
+.demo .chrome{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08)}.demo .chrome i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.16)}
+.demo video,.demo img{display:block;width:100%;height:auto}.demo .still{display:none}
 @media (prefers-reduced-motion:reduce){.demo video{display:none}.demo .still{display:block}}
+.ratio{font-size:clamp(64px,15vw,120px);line-height:1;margin:0 auto 14px}
+.sample{border-radius:16px;padding:32px 28px;border:1px solid var(--line);margin:40px 0 20px;box-shadow:0 20px 50px -30px rgba(20,20,40,.5)}.sample p{margin:0}.sample .big{font-size:26px;font-weight:750;margin-bottom:6px}
+ul.levels{list-style:none;padding:0;margin:16px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+ul.levels li{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px}
+.pass,.fail{font-weight:750;font-size:13px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border-radius:999px;padding:2px 10px}
+.pass{--c:var(--pass)}.fail{--c:var(--fail)}li:has(.pass){--c:var(--pass)}li:has(.fail){--c:var(--fail)}
+pre{background:#0e0f12;color:#e8e6e1;border:1px solid #272a31;border-radius:12px;padding:14px 16px;overflow-x:auto;font:13px/1.6 var(--mono);white-space:pre-wrap;word-break:break-all}
+dt{font-weight:700;margin-top:20px;font-size:17px}dd{margin:6px 0 0;color:var(--muted)}
+.prose{padding:56px 0 0}.prose h1{text-align:left;margin:0 0 14px}.prose .lede{margin:0 0 28px}
+footer{margin-top:96px;border-top:1px solid var(--line);padding:26px 0 44px;color:var(--muted);font-size:14px}
+@media (max-width:560px){form{padding:12px;justify-content:flex-start}button{width:100%}}
 `;
 
 function layout(base: string, meta: PageMeta, body: string): string {
 	const root = new URL(`${base}/`).pathname.replace(/\/$/, "");
 	return `<!doctype html><html lang="${SITE.lang}"><head>
 ${head(base, meta)}
-<style>${STYLE}</style></head><body><main>
-<nav class="top" aria-label="Site"><a href="${root}/"><img src="${root}/icon.svg" alt="" width="24" height="24">${esc(SITE.name)}</a><a href="${root}/about">About</a></nav>
-${body}
-<footer>${esc(SITE.name)}: no JavaScript, no cookies, nothing stored. <a href="${SITE.repo}">Open source</a>, made by <a href="${SITE.author.url}">${esc(SITE.author.name)}</a>.</footer>
-</main></body></html>`;
+<style>${STYLE}</style></head><body>
+<header class="top stage"><nav class="wrap" aria-label="Site"><a href="${root}/"><img src="${root}/icon.svg" alt="" width="26" height="26">${esc(SITE.name)}</a><a href="${root}/about">About</a></nav></header>
+<main>${body}</main>
+<footer><div class="wrap">${esc(SITE.name)}: no JavaScript, no cookies, nothing stored. <a href="${SITE.repo}">Open source</a>, made by <a href="${SITE.author.url}">${esc(SITE.author.name)}</a>.</div></footer>
+</body></html>`;
 }
 
 const form = (root: string, fg = "1d1c1a", bg = "fbfaf7") =>
@@ -61,14 +79,14 @@ export function homePage(base: string): string {
 			title: `${SITE.name}: ${SITE.tagline}`,
 			description: SITE.description,
 		},
-		`<h1>${esc(SITE.tagline)}</h1>
+		`<section class="hero stage"><div class="wrap"><h1 class="grad">${esc(SITE.tagline)}</h1>
 <p class="lede">${esc(SITE.description)}</p>
 ${form(root)}
 ${chips(root)}
-<figure class="demo"><img class="still" src="${root}/demo.jpg" width="960" height="540" alt=""><video src="${root}/demo.mp4" poster="${root}/demo.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-describedby="demo-text"></video>
-<figcaption id="demo-text" class="sr">A 22-second film: 999999/ffffff is typed after the address, the result page shows a 2.84:1 ratio and a text sample, every WCAG level is marked fail, and a click on the nearest passing color, #767676.</figcaption></figure>
-<h2>Or type it</h2>
-<pre>${esc(base)}/1d1c1a/fbfaf7</pre>`,
+<figure class="demo"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div><img class="still" src="${root}/demo.jpg" width="960" height="540" alt=""><video src="${root}/demo.mp4" poster="${root}/demo.jpg" width="960" height="540" autoplay muted loop playsinline preload="metadata" aria-describedby="demo-text"></video>
+<figcaption id="demo-text" class="sr">A 22-second film: 999999/ffffff is typed after the address, the result page shows a 2.84:1 ratio and a text sample, every WCAG level is marked fail, and a click on the nearest passing color, #767676.</figcaption></figure></div></section>
+<div class="wrap"><h2>Or type it</h2>
+<pre>${esc(base)}/1d1c1a/fbfaf7</pre></div>`,
 	);
 }
 
@@ -85,9 +103,9 @@ export function resultPage(base: string, r: Result): string {
 	return layout(
 		base,
 		meta,
-		`<h1 class="ratio">${r.ratio.toFixed(2)}:1</h1>
-<p class="lede">#${r.fg} text on #${r.bg}: passes ${passes} of ${r.levels.length} WCAG 2.2 checks.</p>
-<div class="sample" style="color:#${r.fg};background:#${r.bg}"><p class="big">Large text, 24px bold</p><p>Body text at 16px, the size most paragraphs use.</p></div>
+		`<section class="hero short stage"><div class="wrap"><h1 class="ratio grad">${r.ratio.toFixed(2)}:1</h1>
+<p class="lede">#${r.fg} text on #${r.bg}: passes ${passes} of ${r.levels.length} WCAG 2.2 checks.</p></div></section>
+<div class="wrap"><div class="sample" style="color:#${r.fg};background:#${r.bg}"><p class="big">Large text, 24px bold</p><p>Body text at 16px, the size most paragraphs use.</p></div>
 <ul class="levels">${r.levels
 			.map(
 				(l) =>
@@ -100,7 +118,7 @@ ${form(root, r.fg, r.bg)}
 <h2>Embed or call it</h2>
 <pre>![contrast](${esc(base)}/badge/${path}.svg)
 curl '${esc(base)}/api/contrast?fg=${r.fg}&amp;bg=${r.bg}'</pre>
-<p><img src="${root}/badge/${path}.svg" alt="Contrast badge for #${r.fg} on #${r.bg}" width="150" height="20"></p>`,
+<p><img src="${root}/badge/${path}.svg" alt="Contrast badge for #${r.fg} on #${r.bg}" width="150" height="20"></p></div>`,
 	);
 }
 
@@ -118,12 +136,12 @@ export function aboutPage(base: string): string {
 			jsonLd: [faqJsonLd()],
 			crumbs: [{ name: "About", path: "about" }],
 		},
-		`<h1>About ${esc(SITE.name)}</h1>
+		`<div class="wrap prose"><h1>About ${esc(SITE.name)}</h1>
 <p class="lede">${esc(SITE.description)}</p>
 <h2>Questions</h2>
 <dl>${SITE.faq.map((f) => `<dt>${esc(f.q)}</dt><dd>${esc(f.a)}</dd>`).join("")}</dl>
 <h2>Use it from an AI assistant</h2>
-<pre>claude mcp add --transport http ${esc(SITE.name.toLowerCase())} ${esc(base)}/mcp</pre>`,
+<pre>claude mcp add --transport http ${esc(SITE.name.toLowerCase())} ${esc(base)}/mcp</pre></div>`,
 	);
 }
 
@@ -137,7 +155,7 @@ export function notFoundPage(base: string): string {
 			description: `This address is not a page on ${SITE.name}. A result address is two hex colors: /1d1c1a/fbfaf7.`,
 			noindex: true,
 		},
-		`<h1>Page not found</h1><p class="lede">A result address is two hex colors, text first: <a href="${root}/1d1c1a/fbfaf7">/1d1c1a/fbfaf7</a>.</p>${form(root)}`,
+		`<div class="wrap prose"><h1>Page not found</h1><p class="lede">A result address is two hex colors, text first: <a href="${root}/1d1c1a/fbfaf7">/1d1c1a/fbfaf7</a>.</p>${form(root)}</div>`,
 	);
 }
 
