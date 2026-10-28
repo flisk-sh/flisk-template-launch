@@ -10,7 +10,7 @@ export const SITE = {
 	description:
 		"Put two colors in the address and get their WCAG contrast ratio, AA and AAA verdicts and the nearest color that passes. Free, no signup, open source.",
 	/** Where the site lives online, ending in a slash. PUBLIC_URL overrides it at run time. */
-	url: "https://template.flisk.si/",
+	url: "https://your-tool.example.com/",
 	repo: "https://github.com/flisk-sh/flisk-template-launch",
 	lang: "en",
 	locale: "en_US",

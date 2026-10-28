@@ -24,7 +24,7 @@ const slug = (repo as string).split("/")[1];
 
 const FROM = {
 	name: "Contrast",
-	domain: "template.flisk.si",
+	domain: "your-tool.example.com",
 	repo: "flisk-sh/flisk-template-launch",
 	slug: "flisk-template-launch",
 };
@@ -51,6 +51,7 @@ const FILES: Record<string, [string, string][]> = {
 		[`aria-label="${FROM.name}`, `aria-label="${name}`],
 	],
 	"render.yaml": [
+		["    # domains:\n    #   - ", "    domains:\n      - "],
 		[FROM.domain, domain],
 		[FROM.repo, repo as string],
 		[FROM.slug, slug],

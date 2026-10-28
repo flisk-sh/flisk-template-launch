@@ -9,10 +9,13 @@ services:
     region: frankfurt
     autoDeploy: true
     healthCheckPath: /ready
-    domains:
-      - template.flisk.si
+    # Your own domain: uncomment and put it in PUBLIC_URL too (`bun run rename` does both). Without a payment method
+    # on file, Render allows two custom domains per workspace.
+    # domains:
+    #   - your-tool.example.com
     envVars:
+      # The address people use. Without a custom domain, your service's https://<name>.onrender.com/.
       - key: PUBLIC_URL
-        value: https://template.flisk.si/
+        value: https://your-tool.example.com/
       - key: TRUST_PROXY
         value: last-forwarded
