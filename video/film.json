@@ -12,7 +12,7 @@
 			"name": "result",
 			"url": "http://localhost:4123/999999/ffffff",
 			"settle": 1,
-			"rects": { "ratio": "h1.ratio", "sample": ".sample", "levels": "ul.levels", "fix": "main > p:has(a .sw)", "fixlink": "main > p a:has(.sw)" }
+			"rects": { "ratio": "h1.ratio", "sample": ".sample", "levels": "ul.levels", "fix": "main p:has(a .sw)", "fixlink": "main p a:has(.sw)" }
 		}
 	],
 	"scenes": [

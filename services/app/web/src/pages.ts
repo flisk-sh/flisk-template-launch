@@ -15,7 +15,7 @@ a{color:var(--accent);text-underline-offset:3px}.wrap{max-width:820px;margin:0 a
 .stage::after{content:"";position:absolute;inset:-10%;background:radial-gradient(38% 32% at 22% 18%,rgba(91,124,255,.38),transparent 70%),radial-gradient(32% 30% at 82% 30%,rgba(74,222,128,.24),transparent 70%),radial-gradient(40% 36% at 55% 95%,rgba(168,85,247,.3),transparent 70%);pointer-events:none}
 .stage>*{position:relative;z-index:1}
 header.top{background:#07080c;border-bottom:1px solid #1d2029}header.top::before,header.top::after{display:none}
-header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:60px;font-size:15px}
+header.top .wrap{max-width:1080px;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:60px;font-size:15px}
 header.top a{color:var(--muted);text-decoration:none}header.top a:first-child{color:var(--fg);font-weight:750;font-size:17px;display:flex;gap:10px;align-items:center}header.top img{border-radius:6px}
 .hero{padding:72px 0 0;text-align:center}.hero.short{padding-bottom:64px}
 h1{font-size:clamp(34px,6.5vw,60px);line-height:1.04;letter-spacing:-.04em;font-weight:800;margin:0 auto 16px;max-width:16ch}
@@ -45,6 +45,8 @@ pre{background:#0e0f12;color:#e8e6e1;border:1px solid #272a31;border-radius:12px
 dt{font-weight:700;margin-top:20px;font-size:17px}dd{margin:6px 0 0;color:var(--muted)}
 .prose{padding:56px 0 0}.prose h1{text-align:left;margin:0 0 14px}.prose .lede{margin:0 0 28px}
 footer{margin-top:96px;border-top:1px solid var(--line);padding:26px 0 44px;color:var(--muted);font-size:14px}
+.hero{padding:48px 0 0}
+@media (min-width:980px){.hero:not(.short){padding:56px 0 64px}.hero:not(.short) .wrap{max-width:1080px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:56px;align-items:center;text-align:left}.hero:not(.short) .wrap>*{grid-column:1}.hero:not(.short) h1{margin:0 0 16px;font-size:clamp(40px,4.4vw,56px)}.hero:not(.short) .lede{margin:0 0 26px;font-size:18px}.hero:not(.short) form{justify-self:start}.hero:not(.short) .chips{justify-content:flex-start}.hero:not(.short) .demo{grid-column:2;grid-row:1/span 4;margin:0;border-radius:16px;border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px -30px rgba(124,92,255,.6)}}
 @media (max-width:560px){form{padding:12px;justify-content:flex-start}button{width:100%}}
 `;
 
