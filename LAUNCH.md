@@ -64,6 +64,58 @@ Take them from a real run, never a mockup.
 - Share it where you already talk to people: your newsletter, your own social accounts. Say what it does and link
   it; do not ask for votes.
 
+## 6b. Forum threads: good and bad examples
+
+Product Hunt moderators reject forum posts that "exist purely to farm engagement", single-line questions, and posts
+that mostly promote a product. A rejected post costs you a day. Write the thread so a stranger has something to say.
+
+**Bad (this one was rejected in p/vibecoding):**
+
+> **My AI "fixed" one bug and broke 40 files 😭 What's your worst? (reply with a number or a story)**
+>
+> 1️⃣ It deleted something I needed 2️⃣ It rewrote way more than I asked 3️⃣ It said "done ✅" and nothing worked
+> Just reply with a number. I'll post the tally tomorrow.
+
+Why it fails: a numbered poll with "reply with a number" is engagement farming; there is no story, no context and no
+opinion; the tally is a trick to bring people back.
+
+**Bad (too long, reads like a survey):** three questions, a list of what you tried, and a paragraph of setup before
+the point. Readers skip it, and nobody knows which question to answer.
+
+**Bad (an ad):** a changelog, install command and feature bullets with no question. Moderators call this "promotional
+content", and readers scroll past it.
+
+**Good (short, specific, a story and one question):**
+
+> **I asked an AI for a login page. It rewrote my setup.**
+>
+> The login page worked. The app didn't start. It took me an evening to find the one file it had renamed.
+> What's the smallest request you ever made that turned into the biggest mess?
+
+Why it works: it is your own story; the title says what happened; there is one open question that anyone with an AI
+tool can answer with a story, not a method; it names no product and has no link.
+
+**Good (a decision with a trade-off, for your own product forum, p/<product>):**
+
+> **I added a rule to my tool: if anything it generates is edited by hand, it won't start. Dumb or smart?**
+>
+> After an AI rewrote my setup, I made the tool refuse to start and name the file. Some people say "good", others
+> say "let me break my own stuff". Which camp are you, and when would you want to override it?
+
+Why it works: it shares a real design decision, admits doubt, and asks people to pick a side and say why. That is an
+opinion, not a bare vote.
+
+**Rules of thumb**
+
+- One story, one question. Under 80 words.
+- Use only facts that happened. Never invent counts ("14 files") for effect; a reader who checks will not trust the
+  rest.
+- Ask for a story or an opinion, never "reply with a number" or "upvote".
+- Do not name your product in a topic forum (p/vibecoding, p/general). Answer when someone asks. In your own
+  product forum, share a decision, not a feature list.
+- Post your own answer as the first comment, answer every reply within the hour, and join a few other threads first.
+- Weekday mornings, Pacific.
+
 ## 7. Directories to submit to
 
 Submit in the weeks around launch. Each listing is a backlink and a steady trickle of early users.
