@@ -31,6 +31,7 @@ same way.
 | Free hosting: one Render web service | `render.yaml`, `Dockerfile`, [DEPLOY.md](DEPLOY.md) |
 | A how-it-works film in the look of the Flisk promos, made from screenshots of your running site: autoplaying on the home page (MP4 with byte ranges, a still for reduced motion) and a GIF for the README | `video/film.json` → `bun video/shots.ts && bun video/render.ts` |
 | Product Hunt kit: ICE scoring, taglines, gallery, first comment, checklist | [LAUNCH.md](LAUNCH.md) |
+| Where AI users look: the connector, plugin, MCP registries and GitHub Marketplace steps, and what went wrong for us | [docs/DIRECTORIES.md](docs/DIRECTORIES.md) |
 
 ## Make it yours
 
@@ -53,6 +54,8 @@ bun run rename --name "Acme" --domain acme.example.com --repo you/acme
    `bun video/shots.ts && bun video/render.ts` (needs Chrome and ffmpeg). It writes the film into
    `src/video.generated.ts` and the GIF into `docs/demo.gif`.
 5. `bun test`: the SEO tests tell you what you broke.
+6. List it where people ask an AI: a connector and a plugin for the Claude directory, the MCP registries, Cursor, and a
+   GitHub Action if it fits CI. [docs/DIRECTORIES.md](docs/DIRECTORIES.md) has the order and the traps.
 
 If the tool fetches other sites, take the SSRF guard (`src/net.ts`) from
 [Citable](https://github.com/flisk-sh/citable/blob/main/services/app/web/src/net.ts) and use `Slots` and `TtlCache`

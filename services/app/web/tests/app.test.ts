@@ -115,9 +115,17 @@ describe("API, badge and MCP", () => {
 		const list = (await (
 			await rpc(app, { jsonrpc: "2.0", id: 2, method: "tools/list" })
 		).json()) as {
-			result: { tools: { name: string }[] };
+			result: {
+				tools: {
+					name: string;
+					annotations: { title: string; readOnlyHint: boolean };
+				}[];
+			};
 		};
 		expect(list.result.tools.map((t) => t.name)).toEqual(["check_contrast"]);
+		// The Claude directory shows annotations.title and wants every tool marked read-only or not.
+		expect(list.result.tools[0].annotations.title).toBeTruthy();
+		expect(list.result.tools[0].annotations.readOnlyHint).toBe(true);
 		const call = (await (
 			await rpc(app, {
 				jsonrpc: "2.0",
