@@ -127,3 +127,6 @@ Submit in the weeks around launch. Each listing is a backlink and a steady trick
 - [ ] [BetaList](https://betalist.com/): good for pre-launch and early-stage products collecting their first users.
 - [ ] [Indie Hackers](https://www.indiehackers.com/): add the product and share a build or launch story in the
   community.
+- [ ] **Where people ask an AI** (a connector and a plugin for the Claude directory, the MCP registries, Cursor, a
+  GitHub Action if it fits CI): follow [docs/DIRECTORIES.md](docs/DIRECTORIES.md). Name each listing in the words
+  people type, not the tool's name.

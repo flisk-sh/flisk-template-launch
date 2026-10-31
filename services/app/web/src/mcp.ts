@@ -38,7 +38,13 @@ const TOOLS: Tool[] = [
 				},
 				required: ["foreground", "background"],
 			},
-			annotations: { readOnlyHint: true, openWorldHint: false },
+			annotations: {
+				title: "Check color contrast",
+				readOnlyHint: true,
+				destructiveHint: false,
+				idempotentHint: true,
+				openWorldHint: false,
+			},
 		},
 		async run(args) {
 			const r = check(
