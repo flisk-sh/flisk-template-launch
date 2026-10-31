@@ -80,7 +80,7 @@ Worth it only if the tool fits in CI (checking a URL or a README on every pull r
 
 - **Actions billing.** When recent payments fail, jobs never start (they fail in seconds with a billing message). Fix billing; do not read it as a test failure.
 - **Merge queues and required reviews.** A repository with a merge queue needs `gh pr merge` without a strategy flag, and may need two approvals; the author cannot approve their own pull request.
-- **The spell check** flags fragments in regexes (`integrat\w*`). Spell the whole words out.
+- **The spell check** flags a truncated word inside a regex (a word stem followed by `\w*`). Spell the whole words out.
 - **Formatters.** Run the repo's own linter with `--write` before you push; one long line fails CI.
 - **A custom domain on a Worker creates a DNS record.** Deploy it on purpose.
 - **Put each service in its own repository**, with its own tests and deploy, not inside someone else's service.
