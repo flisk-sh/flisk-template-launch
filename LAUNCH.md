@@ -127,6 +127,13 @@ Submit in the weeks around launch. Each listing is a backlink and a steady trick
 - [ ] [BetaList](https://betalist.com/): good for pre-launch and early-stage products collecting their first users.
 - [ ] [Indie Hackers](https://www.indiehackers.com/): add the product and share a build or launch story in the
   community.
+- [ ] [Dev Hunt](https://devhunt.org/): a launch board for developer tools, free. Its URL import may not read your
+  site, so have a 220×220 logo and one screenshot ready for the manual form. A free listing waits in a long queue and
+  links with nofollow; the badge on your own site earns the "Maker links to DevHunt" mark. If your site sets a
+  Content-Security-Policy, allow `https://devhunt.org` in `img-src` or the badge will not show. The paid boost is
+  optional: skip it unless you want a chosen launch week.
+- [ ] [OpenAlternative](https://openalternative.co/submit): only for a full open-source application with 50+ stars and
+  a named proprietary rival. It does not list CLIs, libraries, SDKs, frameworks or MCP servers, so skip it for those.
 - [ ] **Where people ask an AI** (a connector and a plugin for the Claude directory, the MCP registries, Cursor, a
   GitHub Action if it fits CI): follow [docs/DIRECTORIES.md](docs/DIRECTORIES.md). Name each listing in the words
   people type, not the tool's name.
