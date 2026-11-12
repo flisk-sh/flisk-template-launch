@@ -5,5 +5,8 @@
   "type": "module",
   "workspaces": [
     "services/*/*"
-  ]
+  ],
+  "scripts": {
+    "check": "bun run --filter '*' typecheck && bun run --filter '*' lint && bun run --filter '*' test"
+  }
 }
