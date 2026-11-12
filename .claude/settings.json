@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(.env*)",
+      "Read(**/.env*)",
+      "Read(**/.dev.vars*)",
+      "Edit(**/*.generated.ts)",
+      "Write(**/*.generated.ts)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(wrangler deploy:*)",
+      "Bash(bunx wrangler deploy:*)",
+      "Bash(npx wrangler deploy:*)"
+    ]
+  }
+}

@@ -87,8 +87,10 @@ All optional. `PORT`, `PUBLIC_URL` (the address people use, for canonical links 
 ## Checks
 
 ```bash
-cd services/app/web
-bun run typecheck && bun run lint && bun test
+bun install
+bun run check   # typecheck, lint and tests for every package
 ```
+
+Or in one package: `cd services/app/web && bun run typecheck && bun run lint && bun test`.
 
 MIT licensed.
