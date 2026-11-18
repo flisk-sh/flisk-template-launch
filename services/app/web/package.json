@@ -15,7 +15,7 @@
     "video": "cd ../../.. && bun video/shots.ts && bun video/render.ts"
   },
   "dependencies": {
-    "hono": "^4.13.17"
+    "hono": "^4.13.18"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.6",
