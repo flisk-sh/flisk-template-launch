@@ -38,6 +38,19 @@ describe("pages", () => {
 		expect(res.headers.get("location")).toBe("/ffffff/000000");
 	});
 
+	it.each(["/%/000", "/fff/%ff", "/%2523fff/000"])(
+		"returns 404 for an invalid color path %s",
+		async (path) => {
+			expect((await app.request(path)).status).toBe(404);
+		},
+	);
+
+	it("redirects an encoded hash to the canonical result address", async () => {
+		const res = await app.request("/%23FFF/000");
+		expect(res.status).toBe(301);
+		expect(res.headers.get("location")).toBe("/ffffff/000000");
+	});
+
 	it("renders a result", async () => {
 		const html = await (await app.request("/767676/ffffff")).text();
 		expect(html).toContain("4.54:1");
