@@ -102,13 +102,11 @@ export function createApp(options: AppOptions = {}) {
 		);
 	});
 	app.get("/:fg{[0-9a-fA-F#%]+}/:bg{[0-9a-fA-F#%]+}", (c) => {
-		const r = check(
-			decodeURIComponent(c.req.param("fg")),
-			decodeURIComponent(c.req.param("bg")),
-		);
+		const { fg, bg } = c.req.param();
+		const r = check(fg, bg);
 		if (!r) return c.html(notFoundPage(baseOf(c)), 404);
 		// One address per result, so search engines and shared links agree: /FFF/000 → /ffffff/000000.
-		if (c.req.param("fg") !== r.fg || c.req.param("bg") !== r.bg)
+		if (fg !== r.fg || bg !== r.bg)
 			return c.redirect(`${rootOf(c)}/${r.fg}/${r.bg}`, 301);
 		c.header("cache-control", "public, max-age=86400");
 		return c.html(resultPage(baseOf(c), r));
